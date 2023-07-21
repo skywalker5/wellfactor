@@ -17,6 +17,14 @@ You can install WellFactor using pip:
 pip install git+https://github.kp.org/CSIT-CDO-KPWA/wellfactor.git
 ```
 
+## Uninstallation
+
+If you wish to uninstall WellFactor, you can do so with pip:
+```
+pip uninstall wellfactor
+```
+Please note that uninstalling the library will remove all its files and dependencies from your environment.
+
 ## Usage
 
 Here's a simple example of how to use the `PartialObservationNMF` class:
