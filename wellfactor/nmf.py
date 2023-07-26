@@ -85,6 +85,8 @@ class NMF_Base(object):
         final['rel_error'] = mu.norm_fro_err(A, W, H, norm_A) / norm_A
         final['iterations'] = i
         final['elapsed'] = time.time() - start
+        for k in final:
+            final[k] = float(final[k])
 
         rec = {'info': info, 'final': final}
         if verbose >= 1:

@@ -140,6 +140,8 @@ class PartialObservationNMF:
         final['rel_error'] = mu.norm_fro_err_mask(A_permuted, W, H, norm_A, fully_observed_feature_num, observed_item_num) / norm_A
         final['iterations'] = i
         final['elapsed'] = time.time() - start
+        for k in final:
+            final[k] = float(final[k])
 
         rec = {'info': info, 'final': final}
         if verbose >= 1:
