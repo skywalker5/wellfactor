@@ -102,7 +102,7 @@ class PartialObservationNMF:
             info['init'] = 'uniform_random'
 
         if verbose >= 0:
-            print('[NMF] Running: ')
+            print('[PartialObservedNMF] Running: ')
             print(json.dumps(info, indent=4, sort_keys=True))
 
         norm_A = mu.norm_fro(A)
@@ -202,14 +202,14 @@ class PartialObservationNMF:
 
     def iter_solver(self, A: Union[np.ndarray, sps.spmatrix], W: np.ndarray, H: np.ndarray, k: int, it: int, 
                     fully_observed_feature_num: Optional[int], observed_item_num: Optional[int]) -> Tuple[np.ndarray, np.ndarray]:
-        Sol = nnlsm_blockpivot_partial_observation(W, A, init=H.T, 
-                                          observed_feat_num=fully_observed_feature_num, 
-                                          observed_item_num=observed_item_num)
-        H = Sol.T
         Sol = nnlsm_blockpivot_partial_observation(H, A.T, init=W.T, 
                                           observed_feat_num=observed_item_num, 
                                           observed_item_num=fully_observed_feature_num)
         W = Sol.T
+        Sol = nnlsm_blockpivot_partial_observation(W, A, init=H.T, 
+                                          observed_feat_num=fully_observed_feature_num, 
+                                          observed_item_num=observed_item_num)
+        H = Sol.T
         return (W, H)
 
     def initializer(self, W, H):

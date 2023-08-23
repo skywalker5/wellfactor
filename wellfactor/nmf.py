@@ -163,10 +163,10 @@ class NMF_ANLS_BLOCKPIVOT(NMF_Base):
         self.set_default(default_max_iter, default_max_time)
 
     def iter_solver(self, A: np.ndarray, W: np.ndarray, H: np.ndarray, k: int, it: int) -> Tuple[np.ndarray, np.ndarray]:
-        Sol, info = nnlsm_blockpivot(W, A, init=H.T)
-        H = Sol.T
         Sol, info = nnlsm_blockpivot(H, A.T, init=W.T)
         W = Sol.T
+        Sol, info = nnlsm_blockpivot(W, A, init=H.T)
+        H = Sol.T
         return (W, H)
 
 
