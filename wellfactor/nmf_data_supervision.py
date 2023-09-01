@@ -100,7 +100,7 @@ class DataSupervisionNMF:
             info['init'] = 'uniform_random'
 
         if verbose >= 0:
-            print('[NMF] Running: ')
+            print('[DataSupervisionNMF] Running: ')
             print(json.dumps(info, indent=4, sort_keys=True))
 
         norm_A = mu.norm_fro(A)
@@ -145,7 +145,7 @@ class DataSupervisionNMF:
             rec['his'] = his
 
         if verbose >= 0:
-            print('[NMF] Completed: ')
+            print('[DataSupervisionNMF] Completed: ')
             print(json.dumps(final, indent=4, sort_keys=True))
         return W, H, rec
 
@@ -199,13 +199,13 @@ class DataSupervisionNMF:
 
     def iter_solver(self, A, W, H, k, it, 
             feature_split_points = [], data_split_points = [], normA=0):
-        Sol, _ = nnlsm_blockpivot_data_supervised(W, A, init=H.T, for_H=True,
-                feature_split_points=feature_split_points, data_split_points=data_split_points)
-        H = Sol.T
         Sol, err = nnlsm_blockpivot_data_supervised(H, A.T, init=W.T, for_H=False,
                 feature_split_points=feature_split_points, data_split_points=data_split_points,
                 normA=normA)
         W = Sol.T
+        Sol, _ = nnlsm_blockpivot_data_supervised(W, A, init=H.T, for_H=True,
+                feature_split_points=feature_split_points, data_split_points=data_split_points)
+        H = Sol.T
         return (W, H), err
 
     def initializer(self, W, H):

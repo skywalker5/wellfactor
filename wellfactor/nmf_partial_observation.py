@@ -148,7 +148,7 @@ class PartialObservationNMF:
             rec['his'] = his
 
         if verbose >= 0:
-            print('[NMF] Completed: ')
+            print('[PartialObservedNMF] Completed: ')
             print(json.dumps(final, indent=4, sort_keys=True))
         return W, H[inverse_pattern,:], rec
 
