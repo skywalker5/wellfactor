@@ -6,7 +6,7 @@ WellFactor is a Python implementation of Non-negative Matrix Factorization (NMF)
 
 You can install WellFactor using pip:
 ```
-pip install git+https://github.kp.org/CSIT-CDO-KPWA/wellfactor.git
+pip install git+https://github.com/skywalker5/wellfactor.git
 ```
 
 ## Uninstallation
